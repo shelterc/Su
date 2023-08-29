@@ -1,0 +1,34 @@
+name: 自动部署
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检查分支
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: 安装node
+        uses: actions/setup-node@master
+        with:
+          node-version: '16.x'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 构建文件
+        run: npm run build
+
+      - name: 推送到仓库
+        uses: JamesIves/github-pages-deploy-action@v4.4.2
+        with:
+          token: ${{ secrets.DEPLOY_SECRET }}
+          repository-name: your repository
+          branch: main
+          folder: out
+          commit-message: updated by github action

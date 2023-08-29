@@ -1,0 +1,48 @@
+@import '@unocss/reset/tailwind.css';
+@unocss all;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --an-bg-color: #fff;
+  --an-text-color: #050505;
+  --an-link-color: #111827;
+}
+
+html {
+  background-color: var(--an-bg-color);
+  color: var(--an-text-color);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  transition: 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+body::before {
+  position: fixed;
+  content: '';
+  inset: 0;
+  background-image: url('/dot.png');
+  background-repeat: repeat;
+  background-size: 200px;
+  opacity: 0.06;
+  z-index: 0;
+}
+
+#__next {
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+html.dark {
+  --an-bg-color: #1a1a1c;
+}
